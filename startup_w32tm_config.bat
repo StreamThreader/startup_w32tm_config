@@ -8,7 +8,7 @@ ping -n 3 127.0.0.1
 w32tm /register
 ping -n 3 127.0.0.1
 
-rem "set service autostart with net link on/off"
+rem "Set service autostart with net link on/off"
 sc triggerinfo w32time start/networkon stop/networkoff
 
 rem "Allow large offset sync"
@@ -26,7 +26,6 @@ rem "Reread new conf"
 w32tm /config /update
 
 net stop w32time
-
 net start w32time
 
 rem "Force resync"
