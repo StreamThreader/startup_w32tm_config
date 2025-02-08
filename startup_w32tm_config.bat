@@ -26,5 +26,5 @@ net start w32time
 rem "Reread new conf"
 w32tm /config /update
 
-rem "force resync"
+rem "Force resync"
 w32tm /resync /rediscover 
