@@ -23,7 +23,7 @@ sc triggerinfo w32time start/networkon stop/networkoff
 
 net start w32time
 
-rem "Save new conf"
+rem "Reread new conf"
 w32tm /config /update
 
 rem "force resync"
