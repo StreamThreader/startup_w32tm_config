@@ -1,12 +1,15 @@
 
 rem "Reset service to default"
+net stop w32time
 w32tm /debug /disable
 w32tm /unregister
 ping -n 3 127.0.0.1
+
 w32tm /register
 ping -n 3 127.0.0.1
 
-net stop w32time
+rem "set service autostart with net link on/off"
+sc triggerinfo w32time start/networkon stop/networkoff
 
 rem "Allow large offset sync"
 reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\w32time\Config /v MaxNegPhaseCorrection /d 0xFFFFFFFF /t REG_DWORD /f
@@ -19,15 +22,12 @@ net start w32time
 rem "Setup new config"
 w32tm /config /manualpeerlist:"78.26.180.80" /syncfromflags:manual /reliable:yes /update
 
-net stop w32time
-
-rem "set service autostart with net link on/off"
-sc triggerinfo w32time start/networkon stop/networkoff
-
-net start w32time
-
 rem "Reread new conf"
 w32tm /config /update
+
+net stop w32time
+
+net start w32time
 
 rem "Force resync"
 w32tm /resync /rediscover 
