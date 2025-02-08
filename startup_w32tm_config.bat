@@ -4,6 +4,7 @@ w32tm /debug /disable
 w32tm /unregister
 ping -n 3 127.0.0.1
 w32tm /register
+ping -n 3 127.0.0.1
 
 net stop w32time
 
