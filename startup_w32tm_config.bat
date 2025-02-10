@@ -10,6 +10,8 @@ ping -n 3 127.0.0.1
 
 rem "Set service autostart with net link on/off"
 sc triggerinfo w32time start/networkon stop/networkoff
+rem "Run in its own separate process"
+sc config w32time type= own
 
 rem "Allow large offset sync"
 reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\w32time\Config /v MaxNegPhaseCorrection /d 0xFFFFFFFF /t REG_DWORD /f
