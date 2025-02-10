@@ -10,7 +10,7 @@ ping -n 3 127.0.0.1
 
 rem "Set service autostart with net link on/off"
 sc triggerinfo w32time start/networkon stop/networkoff
-rem "Run in its own separate process"
+rem "Run in its own separate process without user interaction"
 sc config w32time type= own
 
 rem "Allow large offset sync"
